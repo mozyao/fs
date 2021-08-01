@@ -23,13 +23,39 @@ const App = (props) => {
   const age = 28
   const {count} = props // increase for each second
   const [counter,setCounter]=useState(0)
+  const [counter2,setCounter2]=useState(0)
+  const [counter3,setCounter3]=useState(0)
+
+
+
+  //lift uo the state in App Componnet
+
+  const increaseByOne = () => { setCounter2(counter2+1)}
+  const setToZero = () => { setCounter2(0)}
+
+
+  // auto count
   setTimeout(
     ()=>setCounter(counter+1),
     1000
-    
-  )
 
-  console.log('rendering...',counter)
+  )
+  // count only clicked
+  const plusClick = () => {
+    console.log('You have clicked the plus button '+counter2+' times.')
+    setCounter3(counter3+1)
+
+  }
+
+  // pass states down to DIsplay Component through props
+  const Display =(props) =>{
+    return (
+      <div>{props.counter}</div>
+    )
+  }
+
+
+  //console.log('rendering...',counter1)
   return (
     <div>
       <h1>Greetings</h1>
@@ -45,8 +71,44 @@ const App = (props) => {
       </br>
       <p> Here is page re-rendering</p>
       {count} 
-      <p>Here is the stateful </p>
+
+
+      <p>Here is the intro of stateful </p>
       {counter}
+
+      <p> Here is counter by click button</p>
+      {counter3}
+      <div>
+        <button onClick={plusClick}>
+          Plus
+        </button>
+
+
+        <button onClick={() => setCounter3(0)}> 
+         Reset
+        </button>
+        <br>
+        </br>
+        <p>If we lift up the states - same effect:</p>
+        
+
+
+
+        <Display counter={counter2}/>
+        <button onClick={increaseByOne}>
+          Increase
+        </button>
+
+        <button onClick={setToZero}>
+          zero
+        </button>
+        
+        
+
+        
+
+      </div>
+
     </div>
 
   )
