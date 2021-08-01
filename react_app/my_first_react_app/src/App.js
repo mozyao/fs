@@ -32,7 +32,9 @@ const App = (props) => {
 
   const increaseByOne = () => { setCounter2(counter2+1)}
   const setToZero = () => { setCounter2(0)}
+  const decreaseByOne = () => { setCounter2(counter2-1)}
 
+  
 
   // auto count
   setTimeout(
@@ -53,7 +55,18 @@ const App = (props) => {
       <div>{props.counter}</div>
     )
   }
+  // we need to pass the event handler and the text title
+  // down to Button from APP through props
+  
+  const Button = (props) => {
+    return (
+      <button onClick={props.onClick}>
+        {props.text}
+       </button>
 
+    )
+
+  }
 
   //console.log('rendering...',counter1)
   return (
@@ -95,14 +108,32 @@ const App = (props) => {
 
 
         <Display counter={counter2}/>
-        <button onClick={increaseByOne}>
+        {/* <button onClick={increaseByOne}>
           Increase
         </button>
 
         <button onClick={setToZero}>
           zero
         </button>
+         */}
+         <Button onClick={increaseByOne} 
+           text='Increase'>
+
+         </Button>
+
+        <Button onClick={decreaseByOne} 
+          text='Decrease'>
+
+        </Button>
+
+        <Button onClick={setToZero}
+        text='Zero'>
+
+        </Button>
         
+        
+         
+
         
 
         
