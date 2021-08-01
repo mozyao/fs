@@ -10,13 +10,17 @@ const Hello = (props) => {
     </div>
     )
 }
-const App = () => {
+
+
+// this App component is given the value of counter
+//via the props
+const App = (props) => {
   const now = new Date()
   const a = 10
   const b = 20
   const myFullName = "Wei Yao"
   const age = 28
-
+  const {counter} = props // increase for each second
 
   return (
     <div>
@@ -29,7 +33,12 @@ const App = () => {
       <p>
         {a} plus {b} is {a + b}
       </p>
+      <br>
+      </br>
+      <p> Here is page re-rendering</p>
+      {counter} 
     </div>
+
   )
 }
 export default App
