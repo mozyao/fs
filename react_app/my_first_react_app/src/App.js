@@ -1,4 +1,5 @@
-import React from 'react'
+import React,{useState} from 'react'
+
 
 
 
@@ -20,8 +21,15 @@ const App = (props) => {
   const b = 20
   const myFullName = "Wei Yao"
   const age = 28
-  const {counter} = props // increase for each second
+  const {count} = props // increase for each second
+  const [counter,setCounter]=useState(0)
+  setTimeout(
+    ()=>setCounter(counter+1),
+    1000
+    
+  )
 
+  console.log('rendering...',counter)
   return (
     <div>
       <h1>Greetings</h1>
@@ -36,7 +44,9 @@ const App = (props) => {
       <br>
       </br>
       <p> Here is page re-rendering</p>
-      {counter} 
+      {count} 
+      <p>Here is the stateful </p>
+      {counter}
     </div>
 
   )
