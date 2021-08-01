@@ -3,13 +3,27 @@ import React,{useState} from 'react'
 
 
 
-const Hello = (props) => {
+const Hello = ({name,age}) => {
+
+  const bornYear = () => new Date().getFullYear() - age
+
   return (
-    <div>      
-      <p>This is the hello component, my name is {props.name}
-      , I am {props.age} years old.</p>
+    <div>
+      <p>Hello {name}, you are {age} years old</p>
+      <p>So you were probably born in {bornYear()}</p>
     </div>
-    )
+  )
+}
+
+const Halo =(props) =>{
+
+  return (
+    <div>
+      <p>Hello {props.name}, you are {props.age} years old</p>
+    </div>
+  )
+
+
 }
 
 
@@ -20,12 +34,16 @@ const App = (props) => {
   const a = 10
   const b = 20
   const myFullName = "Wei Yao"
-  const age = 28
+  const myAge = 27
   const {count} = props // increase for each second
   const [counter,setCounter]=useState(0)
   const [counter2,setCounter2]=useState(0)
   const [counter3,setCounter3]=useState(0)
-
+  const p = {
+    name: 'Wei Yao',
+    age: 27,
+  }
+  const {name,age} = p
 
 
   //lift uo the state in App Componnet
@@ -57,7 +75,7 @@ const App = (props) => {
   }
   // we need to pass the event handler and the text title
   // down to Button from APP through props
-  
+
   const Button = (props) => {
     return (
       <button onClick={props.onClick}>
@@ -72,9 +90,9 @@ const App = (props) => {
   return (
     <div>
       <h1>Greetings</h1>
-      <Hello name="Mozzie" age= {2021-1993}/>
-      <Hello name = {myFullName} age= {age}/>
     
+      <Hello name = {name} age= {age}/>
+      <Halo name = {myFullName} age= {myAge}/>
       
       <p>Hello world, it is {now.toString()}</p>
       <p>
