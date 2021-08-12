@@ -46,10 +46,20 @@ const App = () => {
     setRight(right+1)
 
   }
-  const [v,setValue] = useState(999)
+  const [v,setValue] = useState()
   
   const setToValue = (newValue) => {
     setValue(newValue)
+
+  }
+
+  const [greetingMessage,toWhom] = useState('Here is the greeting message')
+
+  const greeting = (who) =>{
+    return () =>{
+      console.log("hello",who)
+    }
+    
 
   }
 
@@ -140,7 +150,7 @@ const App = () => {
       <p>{allClicks.join(' ')}</p>
       <History allClicks={allClicks}/>
       <button onClick={()=> setToValue(999)}>
-        Nineninen
+        build999
       </button>
       {v}
       <button onClick={()=> setToValue(0)}>
@@ -150,6 +160,12 @@ const App = () => {
       <button onClick={()=> setToValue(v+1)}>
         plusOne
       </button>
+
+      <br></br>
+      {greetingMessage}
+      <button onClick={greeting('world')}> 全世界</button>
+      <button onClick={greeting('react')}> React</button>
+      <button onClick={greeting('NASA')}> NASA</button>
       
 
     </div>
