@@ -46,6 +46,12 @@ const App = () => {
     setRight(right+1)
 
   }
+  const [v,setValue] = useState(999)
+  
+  const setToValue = (newValue) => {
+    setValue(newValue)
+
+  }
 
   // const handleLeftClick =() => {
   //   const newClicks = {
@@ -133,6 +139,18 @@ const App = () => {
 {/* we can also build a History component to handle it*/}
       <p>{allClicks.join(' ')}</p>
       <History allClicks={allClicks}/>
+      <button onClick={()=> setToValue(999)}>
+        Nineninen
+      </button>
+      {v}
+      <button onClick={()=> setToValue(0)}>
+        Reset
+      </button>
+
+      <button onClick={()=> setToValue(v+1)}>
+        plusOne
+      </button>
+      
 
     </div>
 
