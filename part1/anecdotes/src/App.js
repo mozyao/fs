@@ -20,18 +20,36 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients'
   ]
-   
+
+  const [votes,setVotes] =useState({0:0,1:0,2:0,3:0,4:0,5:0,6:0})
+
+
   const [selected, setSelected] = useState(0)
-  
+  // const randomIndex = Math.floor(Math.random() * anecdotes.length ) 
+  // Bug if put the var here, making it const forever 
+
+  // need to be initialized inside the handler , each time it handles, it creates a new variable
   const handleAnecdoteClick = () => {
     const randomIndex = Math.floor(Math.random() * anecdotes.length )
     setSelected(randomIndex)
-    console.log(randomIndex)
+    // console.log(randomIndex)
   }
+
+  const handleVoteClick = () => {
+    const copy = {...votes}
+    copy[selected]+=1 
+    setVotes(copy) // set the new copy as our new state
+  }
+
+
+
   return (
     <div>
       <p>{anecdotes[selected]}</p>
+      <p>has {votes[selected]} votes</p>
       <Button onClick={handleAnecdoteClick} text="next anexdote" />
+      <Button onClick={handleVoteClick} text="vote"/>
+
     </div>
   )
 }
