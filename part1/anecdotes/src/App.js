@@ -1,15 +1,25 @@
 import React, { useState } from 'react'
 
 
-
-
-
-
 const Button =({onClick,text})=>
   <button onClick={onClick}> {text}</button>
   
+const Topvote = ({anecdotes,votes}) =>{
+  const currTop= Math.max(...votes)
+  const topIndex= votes.indexOf(currTop)
+  if (currTop===0){
+    return(
+      <p>Please vote some anecdotes first</p>
+    )
+  }
+  return (
+    <div>
+      <p>{anecdotes[topIndex]}</p>
+      <p>has {currTop} votes</p>
+    </div>
+  )
 
-
+}
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often',
@@ -21,7 +31,7 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients'
   ]
 
-  const [votes,setVotes] =useState({0:0,1:0,2:0,3:0,4:0,5:0,6:0})
+  const [votes,setVotes] =useState(Array(7).fill(0))
 
 
   const [selected, setSelected] = useState(0)
@@ -36,12 +46,10 @@ const App = () => {
   }
 
   const handleVoteClick = () => {
-    const copy = {...votes}
+    const copy = [...votes]
     copy[selected]+=1 
     setVotes(copy) // set the new copy as our new state
   }
-
-
 
   return (
     <div>
@@ -49,7 +57,7 @@ const App = () => {
       <p>has {votes[selected]} votes</p>
       <Button onClick={handleAnecdoteClick} text="next anexdote" />
       <Button onClick={handleVoteClick} text="vote"/>
-
+      <Topvote anecdotes={anecdotes}  votes={votes} />
     </div>
   )
 }
